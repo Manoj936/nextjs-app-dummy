@@ -28,8 +28,6 @@ const AddProductPage = () => {
       if (!res.ok) {
         throw new Error("Failed to add product");
       }
-
-      const data = await res.json();
       // Navigate to the products page after adding a new product
       router.push("/products");
     } catch (error) {
