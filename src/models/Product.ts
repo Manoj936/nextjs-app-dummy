@@ -1,12 +1,19 @@
-import  { Schema, model, models } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
 
-const ProductSchema = new Schema({
+interface Product extends Document {
+  name: string;
+  price: number;
+  description?: string;
+  createdAt: Date;
+}
+
+const productSchema = new Schema<Product>({
   name: { type: String, required: true },
   price: { type: Number, required: true },
   description: { type: String },
-  createdAt: { type: Date, default: Date.now },
+  createdAt: { type: Date, default: Date.now }
 });
 
-const Product = models.Product || model('Product', ProductSchema);
+const Product = model<Product>('Product', productSchema);
 
 export default Product;
